@@ -1,0 +1,666 @@
+/*
+ * CurseStone docs: graphite theme on top of Shibuya.
+ * Every selector starts with :root:root so it wins over the theme's
+ * light and dark rules regardless of the color mode the visitor had saved.
+ */
+
+:root:root:root {
+  color-scheme: dark;
+
+  --cs-bg: #141518;
+  --cs-bg-subtle: #1c1e22;
+  --cs-surface: #1a1c20;
+  --cs-border: #2d3036;
+  --cs-border-strong: #6b6f78;
+
+  --cs-text: #ffffff;
+  --cs-soft: #d3d5da;
+  --cs-muted: #9a9ea8;
+
+  --cs-glow: rgba(255, 255, 255, 0.07);
+  --cs-glass-bg: rgba(34, 37, 42, 0.55);
+  --cs-glass-fill: rgba(255, 255, 255, 0.06);
+  --cs-glass-fill-hover: rgba(255, 255, 255, 0.12);
+  --cs-glass-border: rgba(255, 255, 255, 0.12);
+  --cs-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --cs-glass-blur: saturate(160%) blur(16px);
+
+  --cs-radius: 12px;
+  --cs-radius-sm: 8px;
+
+  --cs-font: Inter, "Segoe UI", system-ui, sans-serif;
+  --cs-mono: "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+  --sy-c-background: var(--cs-bg);
+  --sy-c-surface: var(--cs-bg-subtle);
+  --sy-c-text: var(--cs-soft);
+  --sy-c-light: var(--cs-muted);
+  --sy-c-bold: var(--cs-text);
+  --sy-c-heading: var(--cs-text);
+  --sy-c-border: var(--cs-border);
+  --sy-c-divider: var(--cs-border);
+  --sy-c-link: var(--cs-text);
+  --sy-c-link-hover: var(--cs-text);
+  --sy-f-text: var(--cs-font);
+  --sy-f-heading: var(--cs-font);
+  --sy-f-code: var(--cs-mono);
+}
+
+/* Base */
+
+:root:root body {
+  font-family: var(--cs-font);
+  color: var(--cs-soft);
+  background-color: var(--cs-bg);
+  background-image:
+    radial-gradient(60rem 40rem at 85% -10%, var(--cs-glow), transparent 60%),
+    radial-gradient(50rem 35rem at -10% 110%, var(--cs-glow), transparent 60%);
+  background-attachment: fixed;
+}
+
+:root:root ::selection {
+  color: var(--cs-bg);
+  background: var(--cs-text);
+}
+
+:root:root * {
+  scrollbar-width: thin;
+  scrollbar-color: #3a3d44 transparent;
+}
+
+/* The page is always graphite, so the color-mode switch is hidden. */
+:root:root .js-theme,
+:root:root .theme-switch {
+  display: none !important;
+}
+
+/* Header */
+
+:root:root .sy-head {
+  background: var(--cs-glass-bg);
+  border-bottom: 1px solid var(--cs-glass-border);
+  -webkit-backdrop-filter: var(--cs-glass-blur);
+  backdrop-filter: var(--cs-glass-blur);
+}
+
+:root:root .sy-head-blur {
+  display: none;
+}
+
+:root:root .sy-head-brand,
+:root:root .sy-head-brand strong {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--cs-text);
+}
+
+:root:root .sy-head-nav a,
+:root:root .sy-head-links a,
+:root:root .sy-head-socials a {
+  color: var(--cs-muted);
+  transition: color 0.15s;
+}
+
+:root:root .sy-head-nav a:hover,
+:root:root .sy-head-links a:hover,
+:root:root .sy-head-socials a:hover {
+  color: var(--cs-text);
+}
+
+:root:root .sy-head input[type="search"],
+:root:root .sy-head input[name="q"],
+:root:root .searchbox input {
+  color: var(--cs-text);
+  background: var(--cs-glass-fill);
+  border: 1px solid var(--cs-glass-border);
+  border-radius: var(--cs-radius-sm);
+}
+
+/* Sidebar navigation */
+
+:root:root .sy-lside {
+  background: transparent;
+  border-right: 1px solid var(--cs-border);
+}
+
+:root:root .globaltoc .caption,
+:root:root .globaltoc .caption-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cs-muted);
+}
+
+:root:root .globaltoc a {
+  color: var(--cs-muted);
+  border-radius: var(--cs-radius-sm);
+  transition: color 0.15s, background-color 0.15s;
+}
+
+:root:root .globaltoc a:hover {
+  color: var(--cs-text);
+  background: var(--cs-bg-subtle);
+}
+
+:root:root .globaltoc li.current > a,
+:root:root .globaltoc a.current {
+  font-weight: 600;
+  color: var(--cs-bg);
+  background: var(--cs-text);
+}
+
+/* Table of contents on the right */
+
+:root:root .sy-rside a {
+  color: var(--cs-muted);
+}
+
+:root:root .sy-rside a:hover,
+:root:root .sy-rside a.current,
+:root:root .sy-rside li.current > a {
+  color: var(--cs-text);
+}
+
+/* Content typography */
+
+:root:root .sy-main {
+  color: var(--cs-soft);
+}
+
+:root:root .sy-main h1,
+:root:root .sy-main h2,
+:root:root .sy-main h3,
+:root:root .sy-main h4 {
+  font-family: var(--cs-font);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--cs-text);
+}
+
+:root:root .sy-main h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  :root:root .sy-main h1 {
+    background-image: linear-gradient(180deg, var(--cs-text) 35%, var(--cs-muted));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+:root:root .sy-main h2 {
+  margin-top: 2.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--cs-border);
+}
+
+:root:root .sy-main strong {
+  color: var(--cs-text);
+}
+
+:root:root .sy-main a:not(.headerlink):not(.cs-btn):not(.copybtn) {
+  color: var(--cs-text);
+  text-decoration: underline;
+  text-decoration-color: var(--cs-border-strong);
+  text-underline-offset: 3px;
+}
+
+:root:root .sy-main a:not(.headerlink):not(.cs-btn):hover {
+  text-decoration-color: var(--cs-text);
+}
+
+:root:root .sy-main a.headerlink {
+  color: var(--cs-muted);
+  text-decoration: none;
+}
+
+:root:root .sy-main hr {
+  border: 0;
+  border-top: 1px solid var(--cs-border);
+}
+
+:root:root .sy-main blockquote {
+  padding: 0.25rem 1.25rem;
+  color: var(--cs-soft);
+  border-left: 3px solid var(--cs-border-strong);
+}
+
+:root:root .sy-main kbd {
+  padding: 1px 6px;
+  font-family: var(--cs-mono);
+  font-size: 0.85em;
+  color: var(--cs-text);
+  background: var(--cs-bg-subtle);
+  border: 1px solid var(--cs-border);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+}
+
+/* Inline code */
+
+:root:root .sy-main code.literal,
+:root:root .sy-main p code,
+:root:root .sy-main li code,
+:root:root .sy-main td code {
+  font-family: var(--cs-mono);
+  font-size: 0.85em;
+  color: var(--cs-text);
+  background: var(--cs-bg-subtle);
+  border: 1px solid var(--cs-border);
+  border-radius: 6px;
+}
+
+/* Code blocks */
+
+:root:root .sy-main div[class*="highlight-"] {
+  position: relative;
+  overflow: hidden;
+  background: var(--cs-bg-subtle);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius);
+}
+
+:root:root .sy-main .highlight,
+:root:root .sy-main .highlight pre {
+  font-family: var(--cs-mono);
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--cs-soft);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+:root:root .sy-main .highlight pre {
+  padding: 1rem 1.25rem;
+}
+
+:root:root .sy-main .copybtn {
+  color: var(--cs-soft);
+  background: var(--cs-glass-fill);
+  border: 1px solid var(--cs-glass-border);
+  border-radius: var(--cs-radius-sm);
+}
+
+:root:root .sy-main .copybtn:hover {
+  background: var(--cs-glass-fill-hover);
+}
+
+/* Syntax colors: monochrome, keeps the palette of the site */
+
+:root:root .highlight .c,
+:root:root .highlight .c1,
+:root:root .highlight .cm,
+:root:root .highlight .cp,
+:root:root .highlight .cpf,
+:root:root .highlight .cs {
+  font-style: italic;
+  color: #6f7480;
+}
+
+:root:root .highlight .k,
+:root:root .highlight .kc,
+:root:root .highlight .kd,
+:root:root .highlight .kn,
+:root:root .highlight .kp,
+:root:root .highlight .kr,
+:root:root .highlight .kt,
+:root:root .highlight .ow {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+:root:root .highlight .s,
+:root:root .highlight .sa,
+:root:root .highlight .sb,
+:root:root .highlight .sc,
+:root:root .highlight .dl,
+:root:root .highlight .sd,
+:root:root .highlight .s1,
+:root:root .highlight .s2,
+:root:root .highlight .se,
+:root:root .highlight .sh,
+:root:root .highlight .si,
+:root:root .highlight .sx,
+:root:root .highlight .sr,
+:root:root .highlight .ss {
+  color: #b9bdc7;
+}
+
+:root:root .highlight .m,
+:root:root .highlight .mb,
+:root:root .highlight .mf,
+:root:root .highlight .mh,
+:root:root .highlight .mi,
+:root:root .highlight .mo,
+:root:root .highlight .il {
+  color: #e8eaee;
+}
+
+:root:root .highlight .nf,
+:root:root .highlight .fm,
+:root:root .highlight .nc,
+:root:root .highlight .nn,
+:root:root .highlight .ne,
+:root:root .highlight .nd,
+:root:root .highlight .nt {
+  color: #ffffff;
+}
+
+:root:root .highlight .nb,
+:root:root .highlight .bp,
+:root:root .highlight .na,
+:root:root .highlight .nv,
+:root:root .highlight .vc,
+:root:root .highlight .vg,
+:root:root .highlight .vi {
+  color: #d3d5da;
+}
+
+:root:root .highlight .o,
+:root:root .highlight .p {
+  color: var(--cs-muted);
+}
+
+:root:root .highlight .err {
+  color: inherit;
+  background: none;
+  border: 0;
+}
+
+/* Tables */
+
+:root:root .sy-main table.docutils {
+  width: 100%;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius);
+}
+
+:root:root .sy-main table.docutils th,
+:root:root .sy-main table.docutils td {
+  padding: 0.65rem 1rem;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--cs-border);
+}
+
+:root:root .sy-main table.docutils tr:last-child td {
+  border-bottom: 0;
+}
+
+:root:root .sy-main table.docutils th {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--cs-text);
+  background: var(--cs-bg-subtle);
+}
+
+/* Tables written as "| | |" have an empty header row: hide it. */
+:root:root .sy-main table.docutils thead:not(:has(th:not(:empty))) {
+  display: none;
+}
+
+/* Admonitions: monochrome, differentiated by border style */
+
+:root:root .sy-main .admonition {
+  padding: 1rem 1.25rem;
+  color: var(--cs-soft);
+  background: var(--cs-bg-subtle);
+  border: 1px solid var(--cs-border);
+  border-left: 3px solid var(--cs-text);
+  border-radius: var(--cs-radius-sm);
+  box-shadow: none;
+}
+
+:root:root .sy-main .admonition.tip,
+:root:root .sy-main .admonition.hint {
+  border-left-style: double;
+  border-left-width: 5px;
+}
+
+:root:root .sy-main .admonition.warning,
+:root:root .sy-main .admonition.caution,
+:root:root .sy-main .admonition.danger,
+:root:root .sy-main .admonition.error {
+  border-left-color: var(--cs-muted);
+  border-style: dashed;
+  border-left-style: solid;
+}
+
+:root:root .sy-main .admonition-title {
+  font-weight: 700;
+  color: var(--cs-text);
+  background: transparent;
+}
+
+:root:root .sy-main .admonition > :last-child {
+  margin-bottom: 0;
+}
+
+/* Footer and page navigation */
+
+:root:root .sy-foot {
+  color: var(--cs-muted);
+  background: transparent;
+  border-top: 1px solid var(--cs-border);
+}
+
+:root:root .sy-foot a {
+  color: var(--cs-soft);
+}
+
+:root:root .sy-pagenav a,
+:root:root .rellink a {
+  padding: 0.75rem 1rem;
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius-sm);
+  transition: border-color 0.15s;
+}
+
+:root:root .sy-pagenav a:hover,
+:root:root .rellink a:hover {
+  border-color: var(--cs-text);
+}
+
+/* Landing page (index.md) */
+
+.cs-landing {
+  margin-bottom: 2.5rem;
+}
+
+.cs-lang-switch {
+  display: inline-flex;
+  margin-bottom: 1.5rem;
+  padding: 3px;
+  background: var(--cs-glass-fill);
+  border: 1px solid var(--cs-glass-border);
+  border-radius: var(--cs-radius-sm);
+}
+
+.cs-lang-switch button {
+  padding: 4px 12px;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--cs-muted);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 5px;
+}
+
+.cs-lang-switch button:hover {
+  color: var(--cs-text);
+}
+
+.cs-lang-switch button[aria-pressed="true"] {
+  color: var(--cs-bg);
+  background: var(--cs-text);
+}
+
+html[data-doc-lang="es"] [data-doc-block="en"],
+html[data-doc-lang="en"] [data-doc-block="es"] {
+  display: none;
+}
+
+.cs-hero {
+  max-width: 640px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.cs-eyebrow {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 3px 12px;
+  font-family: var(--cs-mono);
+  font-size: 0.8rem;
+  color: var(--cs-muted);
+  border: 1px solid var(--cs-border);
+  border-radius: 999px;
+}
+
+.cs-hero-title {
+  margin: 0 0 1rem;
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--cs-text);
+}
+
+.cs-lead {
+  font-size: 1.1rem;
+  color: var(--cs-text);
+}
+
+.cs-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.cs-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cs-text);
+  text-decoration: none;
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius-sm);
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.cs-btn:hover {
+  background: var(--cs-bg-subtle);
+  border-color: var(--cs-text);
+}
+
+.cs-btn-primary {
+  color: var(--cs-bg);
+  background: var(--cs-text);
+  border-color: var(--cs-text);
+}
+
+.cs-btn-primary:hover {
+  color: var(--cs-bg);
+  background: var(--cs-text);
+  opacity: 0.85;
+}
+
+:root:root .sy-main a.cs-btn-primary {
+  color: var(--cs-bg);
+}
+
+.cs-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.cs-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 1.35rem;
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius);
+  transition: border-color 0.15s;
+}
+
+.cs-card:hover {
+  border-color: var(--cs-text);
+}
+
+.cs-step {
+  align-self: flex-start;
+  padding: 2px 10px;
+  font-family: var(--cs-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cs-bg);
+  background: var(--cs-text);
+  border-radius: 6px;
+}
+
+.cs-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--cs-text);
+}
+
+.cs-card p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.cs-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.cs-card-links a {
+  padding: 3px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cs-text);
+  text-decoration: none;
+  border: 1px solid var(--cs-border);
+  border-radius: 999px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.cs-card-links a:hover {
+  color: var(--cs-bg);
+  background: var(--cs-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:root * {
+    transition: none !important;
+  }
+}

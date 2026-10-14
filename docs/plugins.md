@@ -1,6 +1,6 @@
 # CurseStone Plugin Guide
 
-🌐 **English** · [Español](plugins-es.md)
+**English** · [Español](plugins-es.md)
 
 Official documentation for developing **Lua 5.4** plugins for CurseStone.
 
@@ -11,29 +11,6 @@ Official documentation for developing **Lua 5.4** plugins for CurseStone.
 | **Manifest** | `plugin.yml` |
 | **Server** | CurseStone (MCPE 0.15.10 / protocol 84) |
 
----
-
-## Table of contents
-
-1. [Introduction](#1-introduction)
-2. [Your first plugin](#2-your-first-plugin)
-3. [Folder structure](#3-folder-structure)
-4. [The `plugin.yml` manifest](#4-the-pluginyml-manifest)
-5. [Lifecycle](#5-lifecycle)
-6. [Modules with `import()`](#6-modules-with-import)
-7. [Commands and permissions](#7-commands-and-permissions)
-8. [Events](#8-events)
-9. [Scheduled tasks](#9-scheduled-tasks)
-10. [Data and configuration](#10-data-and-configuration)
-11. [Messages: chat, tip and popup](#11-messages-chat-tip-and-popup)
-12. [Managing plugins on the server](#12-managing-plugins-on-the-server)
-13. [Full API reference](#13-full-api-reference)
-14. [Best practices](#14-best-practices)
-15. [Troubleshooting](#15-troubleshooting)
-16. [Limitations and roadmap](#16-limitations-and-roadmap)
-
----
-
 ## 1. Introduction
 
 The CurseStone plugin system is designed to be **simple and predictable**:
@@ -43,9 +20,9 @@ The CurseStone plugin system is designed to be **simple and predictable**:
 - **Each plugin is isolated.** It has its own Lua state and its own data folder, and cannot escape them.
 - **A plugin error never crashes the server.** It is logged and the server keeps running.
 
-> **Note:** every message the server writes to its log (plugin loading, warnings, duplicates, manifest or API errors) is in **English**.
-
----
+:::{note}
+Every message the server writes to its log (plugin loading, warnings, duplicates, manifest or API errors) is in **English**.
+:::
 
 ## 2. Your first plugin
 
@@ -90,11 +67,11 @@ return pluginTable
 
 Restart the server (or run `/plugins reload`) and try `/hi` in game.
 
-> The example plugins `hello` and `MyPlugin` ship with the repository and CMake copies them next to the binary automatically. `hello` shows the manifest, YAML/JSON configs, binary data, permissions, tip/popup and events. `MyPlugin` shows the tree layout with `src/core/` and module loading with `import()`.
->
-> A complete, commented reference plugin lives in [`ExamplePlugin/`](example-plugin.md).
+:::{tip}
+The example plugins `hello` and `MyPlugin` ship with the repository and CMake copies them next to the binary automatically. `hello` shows the manifest, YAML/JSON configs, binary data, permissions, tip/popup and events. `MyPlugin` shows the tree layout with `src/core/` and module loading with `import()`.
 
----
+A complete, commented reference plugin lives in [`ExamplePlugin/`](example-plugin.md).
+:::
 
 ## 3. Folder structure
 
@@ -126,8 +103,6 @@ plugins/
 | `plugins/data_pl/<Plugin>/` | Configs and data. Kept across restarts and reloads. |
 
 The data folder uses the plugin's **folder** name (not the manifest `name`), so it is always unique and safe.
-
----
 
 ## 4. The `plugin.yml` manifest
 
@@ -166,9 +141,9 @@ The current version is **`1.0.1`**. It is also shown in `/plugins`, in the start
 - Strings containing spaces, `:` or `#` need quotes (`message: "hi: world"`). Numbers and booleans go unquoted (`interval: 1200`, `enabled: true`).
 - If several folders share a name, only the one with a `plugin.yml` is considered.
 
-> **Upgrading from an older version?** Move the fields from your old `main.lua` into a `plugin.yml` (same YAML syntax).
-
----
+:::{tip}
+**Upgrading from an older version?** Move the fields from your old `main.lua` into a `plugin.yml` (same YAML syntax).
+:::
 
 ## 5. Lifecycle
 
@@ -186,8 +161,6 @@ return pluginTable
 - Plugins load in **alphabetical order** at startup.
 - A plugin with a syntax error is discarded with a log message; the server still starts.
 - Register commands, events and tasks inside `onEnable`.
-
----
 
 ## 6. Modules with `import()`
 
@@ -218,8 +191,6 @@ import("src/core/Example")
 ### Restricted environment
 
 The Lua environment has **no** `io`, `os`, `package`, `debug`, `load`, `loadfile` or `dofile`. The only way to load code is `import` / `plugin.include`, and the only way to touch files is the [`data.*`](#10-data-and-configuration) API.
-
----
 
 ## 7. Commands and permissions
 
@@ -280,13 +251,13 @@ player.setPermission("Steve", "myperm.vip", false)  -- deny
 player.hasPermission("Steve", "myperm.vip")         -- query
 ```
 
-> Custom permissions live **in memory**: they are lost when the server restarts or the player leaves. To persist them, save them with `data.saveYml` and grant them again in the `PlayerJoin` event.
+:::{warning}
+Custom permissions live **in memory**: they are lost when the server restarts or the player leaves. To persist them, save them with `data.saveYml` and grant them again in the `PlayerJoin` event.
+:::
 
 ### Dynamic `/help`
 
 `/help` (and `/?`) is built from the real command registry. Your plugins' commands **show up on their own**, sorted alphabetically with the server's and paginated (`/help`, `/help 2`, ...). Each player only sees the commands they **can use**: op-only commands are hidden from regular players.
-
----
 
 ## 8. Events
 
@@ -313,8 +284,6 @@ events.on("PlayerChat", function(e)
 end)
 ```
 
----
-
 ## 9. Scheduled tasks
 
 **20 ticks = 1 second.**
@@ -338,8 +307,6 @@ scheduler.cancel(task)                          -- cancel by id
 | `scheduler.cancel(id)` | Cancels a task. |
 
 `ticks` must be an integer (use `math.floor` on computed values) and anything below `1` is treated as `1`. Tasks are cancelled automatically when the plugin is disabled.
-
----
 
 ## 10. Data and configuration
 
@@ -394,8 +361,6 @@ It does **not** support: anchors, multi-line text (`|` / `>`) or tab indentation
 
 **JSON** is the full standard, including `\uXXXX` escapes and surrogate pairs. A `null` inside an object omits the key in the Lua table.
 
----
-
 ## 11. Messages: chat, tip and popup
 
 ```lua
@@ -410,8 +375,6 @@ server.broadcast("§eMessage for everyone")     -- to everyone
 - The **tip** is a floating notice.
 - The **popup** appears above the hotbar, useful for a HUD.
 - Both disappear on their own after a few seconds. To make them "last", resend them with `scheduler.every`.
-
----
 
 ## 12. Managing plugins on the server
 
@@ -446,8 +409,6 @@ If two or more folders contain the same plugin, the server **picks none**: it di
 ```
 
 Two plugins count as the same if their `name` matches, or if their folders have the same name (both case-insensitive, since they would clash in `data_pl/`). Keep a single copy and restart or use `/plugins reload`.
-
----
 
 ## 13. Full API reference
 
@@ -520,8 +481,6 @@ Two plugins count as the same if their `name` matches, or if their folders have 
 | `data.loadYml / saveYml` | YAML |
 | `data.loadJson / saveJson` | JSON |
 
----
-
 ## 14. Best practices
 
 - **Register everything in `onEnable`** (commands, events, tasks) and clean up what you need in `onDisable`.
@@ -532,8 +491,6 @@ Two plugins count as the same if their `name` matches, or if their folders have 
 - **Avoid infinite loops.** There is no instruction limit yet.
 - **Use `/plugins reload`** while developing instead of restarting the server.
 - **Do not keep important data only in memory** (permissions, counters): persist it in `data_pl`.
-
----
 
 ## 15. Troubleshooting
 
@@ -547,8 +504,6 @@ Two plugins count as the same if their `name` matches, or if their folders have 
 | `loadYml` returns `nil, err` | Malformed YAML (for example tabs) | Fix the indentation or use JSON |
 | Server freezes | Infinite loop (`while true do end`) | Review your logic; there is no instruction limit |
 | Permission disappears | Permissions are in memory | Grant it again in `PlayerJoin` |
-
----
 
 ## 16. Limitations and roadmap
 

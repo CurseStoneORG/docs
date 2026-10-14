@@ -1,6 +1,6 @@
 # Example plugin
 
-🌐 **English** · [Español](#español)
+**English** · [Español](#español)
 
 Reference plugin for the CurseStone Lua plugin API **1.0.1**. Copy this folder to your server's `plugins/` directory and run `/plugins reload`.
 
@@ -54,8 +54,6 @@ On first run it creates `plugins/data_pl/ExamplePlugin/config.yml` and, later, `
 | `blocked_words` | `noob`, `idiot` | Chat messages containing them are cancelled |
 | `protected_blocks` | `[7]` | Block ids only ops can break |
 
----
-
 ## Español
 
 Plugin de referencia para la API de plugins Lua de CurseStone **1.0.1**. Copia esta carpeta al directorio `plugins/` de tu servidor y ejecuta `/plugins reload`.
@@ -86,8 +84,6 @@ Plugin de referencia para la API de plugins Lua de CurseStone **1.0.1**. Copia e
 ### Configuración (`config.yml`)
 
 Se crea sola en `plugins/data_pl/ExamplePlugin/config.yml` la primera vez. `{player}` se reemplaza por el nombre del jugador, `announce_interval` está en ticks (20 = 1 s, `0` lo desactiva), `blocked_words` cancela los mensajes de chat que las contengan y `protected_blocks` son los ids de bloque que solo pueden romper los ops.
-
----
 
 ## Source code · Código fuente
 

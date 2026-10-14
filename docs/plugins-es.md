@@ -1,6 +1,6 @@
 # Guía de plugins de CurseStone
 
-🌐 [English](plugins.md) · **Español**
+[English](plugins.md) · **Español**
 
 Documentación oficial para desarrollar plugins en **Lua 5.4** para CurseStone.
 
@@ -11,29 +11,6 @@ Documentación oficial para desarrollar plugins en **Lua 5.4** para CurseStone.
 | **Manifiesto** | `plugin.yml` |
 | **Servidor** | CurseStone (MCPE 0.15.10 / protocolo 84) |
 
----
-
-## Índice
-
-1. [Introducción](#1-introducción)
-2. [Tu primer plugin](#2-tu-primer-plugin)
-3. [Estructura de carpetas](#3-estructura-de-carpetas)
-4. [El manifiesto `plugin.yml`](#4-el-manifiesto-pluginyml)
-5. [Ciclo de vida](#5-ciclo-de-vida)
-6. [Módulos con `import()`](#6-módulos-con-import)
-7. [Comandos y permisos](#7-comandos-y-permisos)
-8. [Eventos](#8-eventos)
-9. [Tareas programadas (scheduler)](#9-tareas-programadas-scheduler)
-10. [Datos y configuración](#10-datos-y-configuración)
-11. [Mensajes: chat, tip y popup](#11-mensajes-chat-tip-y-popup)
-12. [Gestión de plugins en el servidor](#12-gestión-de-plugins-en-el-servidor)
-13. [Referencia completa de la API](#13-referencia-completa-de-la-api)
-14. [Buenas prácticas](#14-buenas-prácticas)
-15. [Solución de problemas](#15-solución-de-problemas)
-16. [Limitaciones y hoja de ruta](#16-limitaciones-y-hoja-de-ruta)
-
----
-
 ## 1. Introducción
 
 El sistema de plugins de CurseStone está pensado para ser **simple y predecible**:
@@ -43,9 +20,9 @@ El sistema de plugins de CurseStone está pensado para ser **simple y predecible
 - **Cada plugin está aislado.** Tiene su propio estado Lua, su propia carpeta de datos y no puede salirse de ellas.
 - **Un error en un plugin no tumba el servidor.** Se registra en el log y el servidor continúa.
 
-> **Nota:** todos los mensajes que el servidor escribe en su log (carga de plugins, avisos, duplicados, errores de manifiesto o API) están en **inglés**.
-
----
+:::{note}
+Todos los mensajes que el servidor escribe en su log (carga de plugins, avisos, duplicados, errores de manifiesto o API) están en **inglés**.
+:::
 
 ## 2. Tu primer plugin
 
@@ -90,11 +67,11 @@ return pluginTable
 
 Reinicia el servidor (o ejecuta `/plugins reload`) y prueba `/hola` en el juego.
 
-> Los plugins de ejemplo `hello` y `MyPlugin` vienen en el repositorio y CMake los copia automáticamente junto al binario. `hello` muestra manifiesto, configs YAML/JSON, datos binarios, permisos, tip/popup y eventos. `MyPlugin` muestra la estructura en árbol con `src/core/` y la carga de módulos con `import()`.
->
-> Un plugin de referencia completo y comentado está en [`ExamplePlugin/`](example-plugin.md).
+:::{tip}
+Los plugins de ejemplo `hello` y `MyPlugin` vienen en el repositorio y CMake los copia automáticamente junto al binario. `hello` muestra manifiesto, configs YAML/JSON, datos binarios, permisos, tip/popup y eventos. `MyPlugin` muestra la estructura en árbol con `src/core/` y la carga de módulos con `import()`.
 
----
+Un plugin de referencia completo y comentado está en [`ExamplePlugin/`](example-plugin.md).
+:::
 
 ## 3. Estructura de carpetas
 
@@ -126,8 +103,6 @@ plugins/
 | `plugins/data_pl/<Plugin>/` | Configs y datos. Se conserva entre reinicios y recargas. |
 
 La carpeta de datos usa el nombre de la **carpeta** del plugin (no el `name` del manifiesto), así siempre es única y segura.
-
----
 
 ## 4. El manifiesto `plugin.yml`
 
@@ -166,9 +141,9 @@ La versión actual es **`1.0.1`**. También se ve en `/plugins`, en el log de ar
 - Los strings con espacios, `:` o `#` van entre comillas (`mensaje: "hola: mundo"`). Números y booleanos van sin comillas (`intervalo: 1200`, `activado: true`).
 - Si varias carpetas comparten nombre, solo se considera la que tiene `plugin.yml`.
 
-> **Actualizas desde una versión anterior?** Mueve los campos de tu antiguo `main.lua` a un `plugin.yml` (misma sintaxis YAML).
-
----
+:::{tip}
+**¿Actualizas desde una versión anterior?** Mueve los campos de tu antiguo `main.lua` a un `plugin.yml` (misma sintaxis YAML).
+:::
 
 ## 5. Ciclo de vida
 
@@ -186,8 +161,6 @@ return pluginTable
 - Los plugins se cargan en **orden alfabético** al arrancar.
 - Un plugin con error de sintaxis se descarta con un mensaje en el log; el servidor arranca igual.
 - Registra comandos, eventos y tareas dentro de `onEnable`.
-
----
 
 ## 6. Módulos con `import()`
 
@@ -218,8 +191,6 @@ import("src/core/Example")
 ### Entorno restringido
 
 El entorno Lua **no tiene** `io`, `os`, `package`, `debug`, `load`, `loadfile` ni `dofile`. La única forma de cargar código es `import` / `plugin.include`, y la única forma de tocar archivos es la API [`data.*`](#10-datos-y-configuración).
-
----
 
 ## 7. Comandos y permisos
 
@@ -280,13 +251,13 @@ player.setPermission("Steve", "mipermiso.vip", false)  -- denegar
 player.hasPermission("Steve", "mipermiso.vip")         -- consultar
 ```
 
-> Los permisos custom viven **en memoria**: se pierden al reiniciar el servidor o al salir el jugador. Si necesitas persistirlos, guárdalos con `data.saveYml` y vuelve a concederlos en el evento `PlayerJoin`.
+:::{warning}
+Los permisos custom viven **en memoria**: se pierden al reiniciar el servidor o al salir el jugador. Si necesitas persistirlos, guárdalos con `data.saveYml` y vuelve a concederlos en el evento `PlayerJoin`.
+:::
 
 ### `/help` dinámico
 
 `/help` (y `/?`) se construye desde el registro real de comandos. Los comandos de tus plugins **aparecen solos**, mezclados alfabéticamente con los del servidor y paginados (`/help`, `/help 2`, ...). Cada jugador solo ve los comandos que **puede usar**: los de solo op no salen para un jugador normal.
-
----
 
 ## 8. Eventos
 
@@ -313,8 +284,6 @@ events.on("PlayerChat", function(e)
 end)
 ```
 
----
-
 ## 9. Tareas programadas (scheduler)
 
 **20 ticks = 1 segundo.**
@@ -338,8 +307,6 @@ scheduler.cancel(tarea)                         -- cancelar por id
 | `scheduler.cancel(id)` | Cancela una tarea. |
 
 `ticks` debe ser un entero (usa `math.floor` en valores calculados) y todo lo menor a `1` se trata como `1`. Las tareas se cancelan solas cuando el plugin se deshabilita.
-
----
 
 ## 10. Datos y configuración
 
@@ -394,8 +361,6 @@ rules:
 
 **JSON** es el estándar completo, con escapes `\uXXXX` y surrogate pairs. Un `null` dentro de un objeto omite la clave en la tabla Lua.
 
----
-
 ## 11. Mensajes: chat, tip y popup
 
 ```lua
@@ -410,8 +375,6 @@ server.broadcast("§eMensaje para todos")       -- a todos
 - El **tip** es un aviso flotante.
 - El **popup** aparece sobre la hotbar, útil para HUD.
 - Ambos se borran solos tras unos segundos. Para que "duren", reenvíalos con `scheduler.every`.
-
----
 
 ## 12. Gestión de plugins en el servidor
 
@@ -446,8 +409,6 @@ Si hay dos o más carpetas con el mismo plugin, el servidor **no elige ninguna**
 ```
 
 Dos plugins cuentan como el mismo si su `name` coincide, o si sus carpetas tienen el mismo nombre (ambos sin distinguir mayúsculas, porque chocarían sus carpetas en `data_pl/`). Deja una sola copia y rearranca o usa `/plugins reload`.
-
----
 
 ## 13. Referencia completa de la API
 
@@ -520,8 +481,6 @@ Dos plugins cuentan como el mismo si su `name` coincide, o si sus carpetas tiene
 | `data.loadYml / saveYml` | YAML |
 | `data.loadJson / saveJson` | JSON |
 
----
-
 ## 14. Buenas prácticas
 
 - **Registra todo en `onEnable`** (comandos, eventos, tareas) y limpia lo que necesites en `onDisable`.
@@ -532,8 +491,6 @@ Dos plugins cuentan como el mismo si su `name` coincide, o si sus carpetas tiene
 - **Evita bucles infinitos.** No hay límite de instrucciones todavía.
 - **Usa `/plugins reload`** mientras desarrollas en vez de reiniciar el servidor.
 - **No guardes datos importantes solo en memoria** (permisos, contadores): persístelos en `data_pl`.
-
----
 
 ## 15. Solución de problemas
 
@@ -547,8 +504,6 @@ Dos plugins cuentan como el mismo si su `name` coincide, o si sus carpetas tiene
 | `loadYml` devuelve `nil, err` | YAML mal formado (por ejemplo, tabs) | Corrige la indentación o usa JSON |
 | El servidor se congela | Bucle infinito (`while true do end`) | Revisa tu lógica; no hay límite de instrucciones |
 | El permiso desaparece | Los permisos son en memoria | Reconcédelo en `PlayerJoin` |
-
----
 
 ## 16. Limitaciones y hoja de ruta
 

@@ -1,26 +1,29 @@
 # CurseStone.readthedocs.io
 
-Web docs principal of CurseStone
+Main docs site of CurseStone
 
-Documentación oficial de [CurseStone](https://github.com/CurseStoneTeam/CurseStone), construida con [Sphinx](https://www.sphinx-doc.org/) y el tema [Shibuya](https://shibuya.lepture.com/), publicada en Read the Docs.
+Official documentation for [CurseStone](https://github.com/CurseStoneTeam/CurseStone), built with [Sphinx](https://www.sphinx-doc.org/) and the [Shibuya](https://shibuya.lepture.com/) theme, published on Read the Docs.
 
-## Estructura
+## Structure
 
 ```
-.readthedocs.yml        configuración de Read the Docs
+.readthedocs.yml        Read the Docs configuration
 docs/
-├── conf.py             configuración de Sphinx
-├── requirements.txt    dependencias para compilar
-├── index.md            portada y menú
-├── installation.md     guía de instalación (EN)
-├── installation-es.md  guía de instalación (ES)
-├── plugins.md          guía de plugins Lua (EN)
-├── plugins-es.md       guía de plugins Lua (ES)
-├── example-plugin.md   página del plugin de ejemplo
-└── _examples/          código del plugin de ejemplo
+├── conf.py             Sphinx configuration
+├── requirements.txt    build dependencies
+├── index.md            bilingual (ESP/ENG) landing page and menu
+├── _static/
+│   ├── custom.css      graphite theme, glass header and landing page styles
+│   └── custom.js       landing page language switch
+├── installation.md     installation guide (EN)
+├── installation-es.md  installation guide (ES)
+├── plugins.md          Lua plugin guide (EN)
+├── plugins-es.md       Lua plugin guide (ES)
+├── example-plugin.md   example plugin page
+└── _examples/          example plugin source code
 ```
 
-## Compilar en local
+## Building locally
 
 ```bash
 python -m venv .venv
@@ -29,15 +32,28 @@ pip install -r docs/requirements.txt
 sphinx-build -b html docs docs/_build/html
 ```
 
-Abre `docs/_build/html/index.html` en el navegador.
+Open `docs/_build/html/index.html` in your browser.
 
-## Publicar en Read the Docs
+## Appearance
 
-1. Sube este repositorio a GitHub.
-2. En https://app.readthedocs.org entra con GitHub y elige **Import a Project**.
-3. Selecciona el repositorio. Read the Docs detecta `.readthedocs.yml` y compila solo en cada push.
+The docs use Shibuya with a custom theme in `docs/_static/custom.css`, matching the CurseStone
+website: graphite background, white text, a glass-effect header, Inter and JetBrains Mono
+typefaces, bordered tables and code blocks, and black and white admonitions. Every selector
+starts with `:root:root` so it overrides the theme's own styles, and the light/dark mode switch
+is hidden because the page is always graphite.
 
-## Añadir una página
+The landing page (`index.md`) is plain HTML inside a `{raw} html` block, with ESP and ENG texts
+that are toggled by the language button (`custom.js` saves the choice in `localStorage`). Its
+links point to `.html` files, so they work with Sphinx's `html` builder (the Read the Docs
+default); if you switch to `dirhtml`, update those links.
 
-1. Crea `docs/mi-pagina.md` con un título `# ...`.
-2. Añádela a la lista `toctree` de `docs/index.md`.
+## Publishing on Read the Docs
+
+1. Push this repository to GitHub.
+2. Go to https://app.readthedocs.org, sign in with GitHub and choose **Import a Project**.
+3. Select the repository. Read the Docs detects `.readthedocs.yml` and builds on every push.
+
+## Adding a page
+
+1. Create `docs/my-page.md` with a `# ...` title.
+2. Add it to the `toctree` list in `docs/index.md`.
