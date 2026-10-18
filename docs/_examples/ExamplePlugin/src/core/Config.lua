@@ -8,6 +8,7 @@ local Config = {}
 local DEFAULTS = {
     join_message      = "§e{player} joined the game",
     quit_message      = "§e{player} left the game",
+    death_message     = "§4{player} has fallen",
     welcome_tip       = "§aWelcome, {player}!",
     announce_interval = 2400,   -- ticks (2400 = 2 minutes)
     announce_message  = "§bTip: type §f/example §bto see what this plugin does",
@@ -51,7 +52,7 @@ function Config.load()
     -- Validate types: a hand-edited config must never break the plugin.
     -- Valida tipos: un config editado a mano nunca debe romper el plugin.
     cfg.announce_interval = math.floor(tonumber(cfg.announce_interval) or DEFAULTS.announce_interval)
-    for _, key in ipairs({ "join_message", "quit_message", "welcome_tip", "announce_message" }) do
+    for _, key in ipairs({ "join_message", "quit_message", "death_message", "welcome_tip", "announce_message" }) do
         cfg[key] = tostring(cfg[key])
     end
     for _, key in ipairs({ "blocked_words", "protected_blocks" }) do

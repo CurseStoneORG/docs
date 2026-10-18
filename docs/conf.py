@@ -29,7 +29,7 @@ html_theme_options = {
     "accent_color": "gray",
     "github_url": "https://github.com/CurseStoneTeam/CurseStone",
     "discord_url": "https://discord.gg/h6TXynYC8p",
-    "globaltoc_expand_depth": 1,
+    "globaltoc_expand_depth": 2,
     "nav_links": [
         {
             "title": "Releases",

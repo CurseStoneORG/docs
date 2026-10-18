@@ -17,8 +17,17 @@ docs/
 │   └── custom.js       landing page language switch
 ├── installation.md     installation guide (EN)
 ├── installation-es.md  installation guide (ES)
-├── plugins.md          Lua plugin guide (EN)
-├── plugins-es.md       Lua plugin guide (ES)
+├── plugins/            Lua plugin guide, one page per topic (EN + ES)
+│   ├── index.md            getting started, manifest, lifecycle, modules (EN)
+│   ├── commands.md         commands and permissions (EN)
+│   ├── events.md           events reference (EN)
+│   ├── scheduler.md        scheduled tasks (EN)
+│   ├── data.md             data, config and resources (EN)
+│   ├── worlds.md           world API (EN)
+│   ├── players.md          player API and handles (EN)
+│   ├── api-reference.md    full API reference (EN)
+│   ├── best-practices.md   limits and troubleshooting (EN)
+│   └── *-es.md             Spanish mirror of every page
 ├── example-plugin.md   example plugin page
 └── _examples/          example plugin source code
 ```

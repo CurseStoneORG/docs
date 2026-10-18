@@ -178,7 +178,7 @@ To back up, stop the server (or run `/save`) and copy the `worlds/` folder toget
 
 ## 10. Install plugins
 
-Copy the plugin folder into `plugins/` next to the server and run `/plugins reload` in the console, or restart the server. See the [plugin guide](plugins.md).
+Copy the plugin folder into `plugins/` next to the server and run `/plugins reload` in the console, or restart the server. See the [plugin guide](plugins/index.md).
 
 ## 11. Update
 

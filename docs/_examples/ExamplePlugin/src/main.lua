@@ -1,5 +1,5 @@
--- ExamplePlugin: showcase of the CurseStone Lua plugin API (1.0.1)
--- ExamplePlugin: demostración de la API de plugins Lua de CurseStone (1.0.1)
+-- ExamplePlugin: showcase of the CurseStone Lua plugin API (1.0.2)
+-- ExamplePlugin: demostración de la API de plugins Lua de CurseStone (1.0.2)
 --
 -- Features / Funciones:
 --   * plugin.yml manifest                  (manifiesto)

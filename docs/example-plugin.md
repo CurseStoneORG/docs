@@ -2,7 +2,7 @@
 
 **English** · [Español](#español)
 
-Reference plugin for the CurseStone Lua plugin API **1.0.1**. Copy this folder to your server's `plugins/` directory and run `/plugins reload`.
+Reference plugin for the CurseStone Lua plugin API **1.0.2**. Copy this folder to your server's `plugins/` directory and run `/plugins reload`.
 
 ## What it demonstrates
 
@@ -14,7 +14,8 @@ Reference plugin for the CurseStone Lua plugin API **1.0.1**. Copy this folder t
 | YAML config with defaults | `src/core/Config.lua` |
 | JSON persistence | `src/core/Stats.lua` |
 | Public, op-only and custom-permission commands | `src/core/Commands.lua` |
-| Events: join, quit, chat, block break | `src/core/Events.lua` |
+| Events: join, quit, chat, block break, death | `src/core/Events.lua` |
+| Health HUD (API 1.0.2: `getHealth` + scheduler) | `src/core/Events.lua` |
 | Scheduler (repeating announcement) | `src/main.lua` |
 | Tip and popup messages | `Commands.lua`, `Events.lua` |
 
@@ -32,7 +33,7 @@ ExamplePlugin/
         └── Events.lua
 ```
 
-On first run it creates `plugins/data_pl/ExamplePlugin/config.yml` and, later, `stats.json`.
+On first run it creates `data_pl/ExamplePlugin/config.yml` (at the server root, new in 1.0.2) and, later, `stats.json`.
 
 ## Commands
 
@@ -48,6 +49,7 @@ On first run it creates `plugins/data_pl/ExamplePlugin/config.yml` and, later, `
 | Key | Default | Meaning |
 |---|---|---|
 | `join_message` / `quit_message` | see file | `{player}` is replaced by the name |
+| `death_message` | see file | Custom broadcast when a player dies (new in 1.0.2) |
 | `welcome_tip` | see file | Tip shown to the player on join |
 | `announce_interval` | `2400` | Ticks between announcements (`0` disables) |
 | `announce_message` | see file | Repeating broadcast text |
@@ -56,7 +58,7 @@ On first run it creates `plugins/data_pl/ExamplePlugin/config.yml` and, later, `
 
 ## Español
 
-Plugin de referencia para la API de plugins Lua de CurseStone **1.0.1**. Copia esta carpeta al directorio `plugins/` de tu servidor y ejecuta `/plugins reload`.
+Plugin de referencia para la API de plugins Lua de CurseStone **1.0.2**. Copia esta carpeta al directorio `plugins/` de tu servidor y ejecuta `/plugins reload`.
 
 ### Qué demuestra
 
@@ -68,7 +70,8 @@ Plugin de referencia para la API de plugins Lua de CurseStone **1.0.1**. Copia e
 | Config YAML con valores por defecto | `src/core/Config.lua` |
 | Persistencia JSON | `src/core/Stats.lua` |
 | Comandos públicos, solo-op y con permiso custom | `src/core/Commands.lua` |
-| Eventos: entrada, salida, chat, romper bloque | `src/core/Events.lua` |
+| Eventos: entrada, salida, chat, romper bloque, muerte | `src/core/Events.lua` |
+| HUD de vida (API 1.0.2: `getHealth` + scheduler) | `src/core/Events.lua` |
 | Scheduler (anuncio repetido) | `src/main.lua` |
 | Mensajes tip y popup | `Commands.lua`, `Events.lua` |
 

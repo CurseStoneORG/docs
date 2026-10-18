@@ -50,10 +50,10 @@
     <li class="cs-card">
       <span class="cs-step">02</span>
       <strong class="cs-card-title">Plugin guide</strong>
-      <p>Develop Lua 5.4 plugins with the official API 1.0.1.</p>
+      <p>Develop Lua 5.4 plugins with the official API 1.0.2.</p>
       <span class="cs-card-links">
-        <a href="plugins.html">English</a>
-        <a href="plugins-es.html">Español</a>
+        <a href="plugins/index.html">English</a>
+        <a href="plugins/index-es.html">Español</a>
       </span>
     </li>
     <li class="cs-card">
@@ -87,10 +87,10 @@
     <li class="cs-card">
       <span class="cs-step">02</span>
       <strong class="cs-card-title">Guía de plugins</strong>
-      <p>Desarrolla plugins en Lua 5.4 con la API oficial 1.0.1.</p>
+      <p>Desarrolla plugins en Lua 5.4 con la API oficial 1.0.2.</p>
       <span class="cs-card-links">
-        <a href="plugins-es.html">Español</a>
-        <a href="plugins.html">English</a>
+        <a href="plugins/index-es.html">Español</a>
+        <a href="plugins/index.html">English</a>
       </span>
     </li>
     <li class="cs-card">
@@ -119,7 +119,7 @@
 :maxdepth: 2
 
 installation
-plugins
+plugins/index
 example-plugin
 Code reference (Doxygen) <https://CurseStoneTeam.github.io/>
 ```
@@ -130,6 +130,7 @@ Code reference (Doxygen) <https://CurseStoneTeam.github.io/>
 :maxdepth: 2
 
 installation-es
-plugins-es
+plugins/index-es
+example-plugin
 Referencia del código (Doxygen) <https://CurseStoneTeam.github.io/>
 ```

@@ -178,7 +178,7 @@ Para hacer una copia, detén el servidor (o ejecuta `/save`) y copia la carpeta 
 
 ## 10. Instalar plugins
 
-Copia la carpeta del plugin dentro de `plugins/`, junto al servidor, y ejecuta `/plugins reload` en la consola, o reinicia el servidor. Mira la [guía de plugins](plugins-es.md).
+Copia la carpeta del plugin dentro de `plugins/`, junto al servidor, y ejecuta `/plugins reload` en la consola, o reinicia el servidor. Mira la [guía de plugins](plugins/index-es.md).
 
 ## 11. Actualizar
 

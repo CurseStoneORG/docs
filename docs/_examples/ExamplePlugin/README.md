@@ -2,7 +2,7 @@
 
 🌐 **English** · [Español](#español)
 
-Reference plugin for the CurseStone Lua plugin API **1.0.1**. Copy this folder to your server's `plugins/` directory and run `/plugins reload`.
+Reference plugin for the CurseStone Lua plugin API **1.0.2**. Copy this folder to your server's `plugins/` directory and run `/plugins reload`.
 
 ## What it demonstrates
 
@@ -58,7 +58,7 @@ On first run it creates `plugins/data_pl/ExamplePlugin/config.yml` and, later, `
 
 ## Español
 
-Plugin de referencia para la API de plugins Lua de CurseStone **1.0.1**. Copia esta carpeta al directorio `plugins/` de tu servidor y ejecuta `/plugins reload`.
+Plugin de referencia para la API de plugins Lua de CurseStone **1.0.2**. Copia esta carpeta al directorio `plugins/` de tu servidor y ejecuta `/plugins reload`.
 
 ### Qué demuestra
 

@@ -53,6 +53,20 @@ function Events.register(cfg)
             player.popup(e.player, "§cThis block is protected")
         end
     end)
+
+    -- New in API 1.0.2: custom death message (writable e.message).
+    -- Nuevo en la API 1.0.2: mensaje de muerte custom (e.message escribible).
+    events.on("PlayerDeath", function(e)
+        e.message = fill(cfg.death_message, e.player)
+    end)
+
+    -- New in API 1.0.2: health HUD with the popup, refreshed by the scheduler.
+    -- Nuevo en la API 1.0.2: HUD de vida con popup, refrescado por el scheduler.
+    scheduler.every(20, function()  -- every second / cada segundo
+        for _, name in ipairs(server.players()) do
+            player.popup(name, "§cHP: " .. player.getHealth(name))
+        end
+    end)
 end
 
 return Events
