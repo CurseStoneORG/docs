@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#151618">
+  <meta name="color-scheme" content="dark light">
+
+  <title>Documentación — CurseStone</title>
+  <meta name="description" content="Documentación oficial de CurseStone: instalación del servidor MCPE 0.15.x y guía de plugins en Lua 5.4.">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CurseStone">
+  <meta property="og:title" content="CurseStone Docs">
+  <meta property="og:description" content="Instalación del servidor y guía de plugins en Lua 5.4 para CurseStone (Minecraft PE 0.15.x).">
+
+  <link rel="icon" href="https://raw.githubusercontent.com/CurseStoneORG/CurseStone/stable/logo.svg" type="image/svg+xml">
+
+  <script src="js/theme-init.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/docs.css">
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <div id="nav-scrim" class="nav-scrim"></div>
+
+  <div class="content-wrap">
+    <header class="mobile-bar">
+      <button class="icon-btn" id="menu-toggle" type="button" aria-controls="sidebar" aria-label="Abrir menú">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a href="#/home" class="mobile-brand">
+        <img class="logo" src="https://raw.githubusercontent.com/CurseStoneORG/CurseStone/stable/logo.svg" alt="" width="28" height="28" onerror="this.hidden=true">
+        <span><span class="tone-a">Curse</span><span class="tone-b">Stone</span> Docs</span>
+      </a>
+    </header>
+
+    <div class="content">
+      <div id="breadcrumbs"></div>
+      <main id="page"></main>
+      <div id="pager"></div>
+      <footer id="footer"></footer>
+    </div>
+  </div>
+
+  <noscript><p class="noscript">Esta documentación necesita JavaScript · This documentation needs JavaScript.</p></noscript>
+
+  <script src="js/data/docs.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/markdown.js"></script>
+  <script src="js/highlight.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,5 +1,0 @@
-api: "1.0.2"
-name: ExamplePlugin
-author: CurseStone
-version: "1.0.2"
-main: src/main.lua
