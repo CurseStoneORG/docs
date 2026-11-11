@@ -1,3 +1,20 @@
+/* Minecraft font (pixel-accurate TTFs, self-hosted). */
+@font-face {
+  font-family: "Minecraft";
+  src: url("../fonts/Minecraft.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Minecraft";
+  src: url("../fonts/Minecraft-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
 
@@ -17,8 +34,8 @@
 
   --accent: #ffb703;
   --accent-2: #ff7a1a;
-  --accent-bar: linear-gradient(180deg, #ffd60a 0%, #ff7a1a 100%);
-  --accent-fill: linear-gradient(135deg, #ffcc1a 0%, #ff9a1f 100%);
+  --accent-bar: #ffb703;
+  --accent-fill: #ffb703;
   --on-accent: #1f1500;
 
   --side-bg: #343131;
@@ -38,14 +55,14 @@
   --admon-text: #404040;
   --admon-title-text: #1b2a33;
 
-  --radius: 6px;
-  --radius-sm: 4px;
+  --radius: 0;
+  --radius-sm: 0;
 
   --sidebar-width: 300px;
   --content-width: 880px;
 
-  --font-body: "Pixelify Sans", "Segoe UI", system-ui, sans-serif;
-  --font-head: "Pixelify Sans", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Minecraft", "Pixelify Sans", "Segoe UI", system-ui, sans-serif;
+  --font-head: "Minecraft", "Pixelify Sans", "Segoe UI", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 }
 
@@ -102,8 +119,8 @@ body {
   margin: 0;
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.65;
-  letter-spacing: 0.01em;
+  line-height: 1.7;
+  letter-spacing: normal;
   color: var(--text);
   background-color: var(--canvas);
   -webkit-font-smoothing: antialiased;
@@ -120,7 +137,7 @@ h3 {
   margin: 0 0 16px;
   font-family: var(--font-head);
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.3;
   color: var(--heading);
 }
 

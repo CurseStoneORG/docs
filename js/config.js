@@ -16,7 +16,7 @@
     org: ORG,
     doxygen: 'https://CurseStoneORG.github.io/doxygen-docs',
     website: 'https://CurseStoneORG.github.io/',
-    apiVersion: '1.0.2',
+    apiVersion: '1.0.3',
     storage: { theme: 'cursestone-theme', lang: 'cursestone-docs-lang' },
   };
 
@@ -49,12 +49,11 @@
 
       'home.eyebrow': 'MCPE 0.15.x · Protocolo 84',
       'home.title': 'Documentación de CurseStone',
-      'home.lead': 'CurseStone es un software de servidor para Minecraft: Pocket Edition 0.15.x (protocolo 84). Tiene un núcleo en C puro para red, NBT y datos de chunks, con la lógica del juego escrita en C++20.',
+      'home.lead': 'CurseStone es un software de servidor para Minecraft: Pocket Edition 0.15.x (protocolo 84), escrito íntegramente en C++20.',
       'home.intro': 'Si quieres ejecutar un servidor MCPE pequeño que puedas leer, compilar y modificar, esto es para ti. Lee los docs en este orden:',
       'home.start': 'Empezar',
       'home.spec.target': 'Compatible con',
-      'home.spec.core': 'Núcleo',
-      'home.spec.logic': 'Lógica',
+      'home.spec.language': 'Lenguaje',
       'home.spec.script': 'Plugins',
       'home.card.installation.title': 'Guía de instalación',
       'home.card.installation.text': 'Instala, ejecuta y actualiza un servidor CurseStone.',
@@ -94,12 +93,11 @@
 
       'home.eyebrow': 'MCPE 0.15.x · Protocol 84',
       'home.title': 'CurseStone Documentation',
-      'home.lead': 'CurseStone is a server software for Minecraft: Pocket Edition 0.15.x (protocol 84). It has a plain C core for networking, NBT and chunk data, with the game logic written in C++20.',
+      'home.lead': 'CurseStone is a server software for Minecraft: Pocket Edition 0.15.x (protocol 84), written entirely in C++20.',
       'home.intro': 'If you want to run a small MCPE server that you can read, build and modify, this is for you. Read the docs in this order:',
       'home.start': 'Get started',
       'home.spec.target': 'Compatible with',
-      'home.spec.core': 'Core',
-      'home.spec.logic': 'Logic',
+      'home.spec.language': 'Language',
       'home.spec.script': 'Plugins',
       'home.card.installation.title': 'Installation guide',
       'home.card.installation.text': 'Install, run and update a CurseStone server.',

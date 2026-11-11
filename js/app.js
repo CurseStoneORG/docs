@@ -284,8 +284,7 @@
 
     var specs = [
       [t('home.spec.target'), 'MCPE 0.15.x'],
-      [t('home.spec.core'), 'C'],
-      [t('home.spec.logic'), 'C++20'],
+      [t('home.spec.language'), 'C++20'],
       [t('home.spec.script'), 'Lua 5.4'],
     ];
 
